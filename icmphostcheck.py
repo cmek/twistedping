@@ -13,7 +13,7 @@ class IcmpStats(object):
     self.max = None
     self.avg = 0
     self.mean = None
-    self.loss = 0.0
+    self.loss = 100.0
 
   def update(self, rtt):
     if rtt is not None:
@@ -122,7 +122,7 @@ class IcmpHostCheck(object):
         log.msg("no buffer space available, rescheduling this query...")
         reactor.callLater(random.random(), self.sendIcmp)
 
-      log.msg("some not currently handled socket error happend (%d): %s" % (e.args[0], str(s)))
+      log.msg("some not currently handled socket error happend (%d): %s" % (e.args[0], str(e)))
 
     reactor.callLater(self.check_interval, self.sendIcmp)
 
