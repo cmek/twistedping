@@ -121,8 +121,8 @@ class IcmpHostCheck(object):
         # back off for some random time and try again
         log.msg("no buffer space available, rescheduling this query...")
         reactor.callLater(random.random(), self.sendIcmp)
-
-      log.msg("some not currently handled socket error happend (%d): %s" % (e.args[0], str(e)))
+      else:
+        log.msg("some not currently handled socket error happend (%d): %s" % (e.args[0], str(e)))
 
     reactor.callLater(self.check_interval, self.sendIcmp)
 
